@@ -475,6 +475,49 @@ st.markdown(
         border: 1px solid var(--line);
         padding: 8px 12px;
         background: rgba(255,255,255,.78);
+        color: var(--ink) !important;
+    }
+
+    [data-testid="stChatMessage"] p,
+    [data-testid="stChatMessage"] span,
+    [data-testid="stChatMessage"] div {
+        color: var(--ink) !important;
+    }
+
+    /* Chat input + all text/number inputs: force a visible dark-on-light
+       text color so it never disappears when a visitor's browser/OS is in
+       dark mode (Streamlit otherwise inherits a white font color here). */
+    [data-testid="stChatInput"],
+    [data-testid="stChatInputContainer"],
+    [data-testid="stBottomBlockContainer"] {
+        background: var(--surface-soft) !important;
+    }
+
+    [data-testid="stChatInput"] textarea,
+    div[data-baseweb="input"] input,
+    div[data-baseweb="base-input"] input,
+    div[data-baseweb="textarea"] textarea,
+    textarea,
+    input[type="text"],
+    input[type="number"],
+    input[type="password"],
+    input[type="email"] {
+        color: var(--ink) !important;
+        background: #F7F9FC !important;
+        -webkit-text-fill-color: var(--ink) !important;
+        caret-color: var(--ink) !important;
+    }
+
+    [data-testid="stChatInput"] textarea::placeholder,
+    textarea::placeholder,
+    input::placeholder {
+        color: var(--muted) !important;
+        opacity: 1 !important;
+    }
+
+    div[data-baseweb="select"] span,
+    div[data-baseweb="select"] div {
+        color: var(--ink) !important;
     }
 
     @media (max-width: 760px) {
@@ -941,7 +984,7 @@ def ask_city_advisor(question: str) -> tuple[str, str]:
         from openai import OpenAI
 
         client = OpenAI(api_key=api_key)
-        model_name = os.getenv("OPENAI_MODEL", "gpt-5.6-luna")
+        model_name = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 
         instructions = (
             "You are CityPulse AI, a decision-support advisor for city managers. "
