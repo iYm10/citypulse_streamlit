@@ -1,4 +1,4 @@
-import base64
+\import base64
 import calendar
 import html
 import json
@@ -55,6 +55,8 @@ if LOGO_PATH.exists():
 st.markdown(
     """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
     :root {
         --navy: #0B1F3A;
         --navy-2: #123E5A;
@@ -71,9 +73,11 @@ st.markdown(
     }
 
     html, body, [class*="css"] {
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display",
                      "SF Pro Text", "Segoe UI", sans-serif;
     }
+
+    * { scroll-behavior: smooth; }
 
     .stApp {
         background:
@@ -477,6 +481,76 @@ st.markdown(
         background: rgba(255,255,255,.78);
     }
 
+    /* ---------------- TOP NAVIGATION HEADER ---------------- */
+    [data-testid="stHeader"] {
+        background: linear-gradient(135deg, #091B33 0%, #0D3D56 55%, #0B6C70 120%) !important;
+        box-shadow: 0 4px 24px rgba(9, 27, 51, .18);
+        height: 4.2rem;
+    }
+
+    [data-testid="stHeader"] * {
+        color: rgba(255,255,255,.92) !important;
+    }
+
+    [data-testid="stHeaderActionElements"] svg {
+        fill: rgba(255,255,255,.85) !important;
+    }
+
+    [data-testid="stTopNavLinkContainer"] {
+        gap: 4px;
+    }
+
+    [data-testid="stTopNavLink"] {
+        border-radius: 12px !important;
+        padding: 8px 16px !important;
+        font-weight: 700 !important;
+        transition: background .15s ease, color .15s ease;
+    }
+
+    [data-testid="stTopNavLink"]:hover {
+        background: rgba(255,255,255,.10) !important;
+    }
+
+    [data-testid="stTopNavLink"][aria-current="page"],
+    [data-testid="stTopNavLink"].isActive,
+    a[data-testid="stTopNavLink"][class*="active"] {
+        background: rgba(255,255,255,.16) !important;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,.22);
+    }
+
+    [data-testid="stTopNavSection"] {
+        border-radius: 12px !important;
+        font-weight: 700 !important;
+    }
+
+    [data-testid="stTopNavPopover"] {
+        background: var(--navy) !important;
+        border-radius: 16px !important;
+        border: 1px solid rgba(255,255,255,.14) !important;
+    }
+
+    [data-testid="stAppViewContainer"] {
+        background: transparent;
+    }
+
+    /* ---------------- MICRO-INTERACTIONS ---------------- */
+    .cp-card, .cp-kpi, div[data-testid="stVerticalBlockBorderWrapper"] {
+        transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .cp-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 46px rgba(16, 44, 72, .10);
+    }
+
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb {
+        background: rgba(11, 31, 58, .22);
+        border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(11, 31, 58, .38); }
+
     @media (max-width: 760px) {
         .main .block-container {padding: 1.2rem .8rem 4rem .8rem;}
         .cp-hero {padding: 28px 24px;border-radius:24px;}
@@ -486,6 +560,7 @@ st.markdown(
         .cp-page-head h1 {font-size:29px;}
         .cp-stepper {grid-template-columns:1fr;}
         .cp-decision h2 {font-size:28px;}
+        [data-testid="stTopNavLink"] {padding: 6px 10px !important; font-size: 13px;}
     }
     </style>
     """,
